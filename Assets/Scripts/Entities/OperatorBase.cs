@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OperatorBase : Entity
+public class OperatorBase : Entity, IClickable
 {
 
     //General Stats
@@ -31,10 +31,23 @@ public class OperatorBase : Entity
     public GunBase equippedSecondary;
     public ArmorBase equippedArmor;
 
+    [Header("GameObjects")]
+    [SerializeField]
+    private GameObject selectionCircle;
+
     public virtual void Escort()
     {
         
     }
 	
+    public void OnClicked()
+    {
+        selectionCircle.SetActive(true);
+    }
+
+    public void OnUnselect()
+    {
+        selectionCircle.SetActive(false);
+    }
 
 }

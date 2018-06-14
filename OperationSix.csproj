@@ -253,7 +253,11 @@
     <Compile Include="Assets\Scripts\Equipment\Attachments\GunClip.cs" />
     <Compile Include="Assets\Scripts\Equipment\Attachments\GunSight.cs" />
     <Compile Include="Assets\Scripts\Equipment\Guns\GunBase.cs" />
+    <Compile Include="Assets\Scripts\GameController\AudioController.cs" />
+    <Compile Include="Assets\Scripts\GameController\CameraController.cs" />
+    <Compile Include="Assets\Scripts\GameController\SelectionController.cs" />
     <Compile Include="Assets\Scripts\GameController\SquadController.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

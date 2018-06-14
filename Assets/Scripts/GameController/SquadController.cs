@@ -16,7 +16,7 @@ public class SquadController : MonoBehaviour
 
         for (int i = 0; i < (int)squadSize; i++)
         {
-            Debug.Log("SquadPosition: " + i);
+            //Debug.Log("SquadPosition: " + i);
         }
     }
 }
