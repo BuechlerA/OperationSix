@@ -235,6 +235,7 @@
     <Compile Include="Assets\Scripts\AI\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\AI\OperatorAI.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\HostageBase.cs" />
     <Compile Include="Assets\Scripts\Entities\HostileBase.cs" />
     <Compile Include="Assets\Scripts\Entities\OperatorBase.cs" />
     <Compile Include="Assets\Scripts\Enums\AmmoType.cs" />
@@ -244,11 +245,15 @@
     <Compile Include="Assets\Scripts\Enums\Nationality.cs" />
     <Compile Include="Assets\Scripts\Enums\Rarity.cs" />
     <Compile Include="Assets\Scripts\Enums\Specialty.cs" />
+    <Compile Include="Assets\Scripts\Enums\SquadName.cs" />
     <Compile Include="Assets\Scripts\Enums\SquadPosition.cs" />
+    <Compile Include="Assets\Scripts\Enums\SquadSize.cs" />
+    <Compile Include="Assets\Scripts\Enums\StanceType.cs" />
     <Compile Include="Assets\Scripts\Equipment\Armor\ArmorBase.cs" />
     <Compile Include="Assets\Scripts\Equipment\Attachments\GunClip.cs" />
     <Compile Include="Assets\Scripts\Equipment\Attachments\GunSight.cs" />
     <Compile Include="Assets\Scripts\Equipment\Guns\GunBase.cs" />
+    <Compile Include="Assets\Scripts\GameController\SquadController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

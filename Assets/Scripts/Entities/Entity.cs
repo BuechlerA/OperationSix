@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour, IDamageable
 
     private float health;
     private float mentality;
+    public StanceType stance;
 
     public virtual void Move()
     {
