@@ -7,6 +7,8 @@ public class SelectionController : MonoBehaviour
     [SerializeField]
     private LayerMask entityLayer;
     [SerializeField]
+    private LayerMask otherLayer;
+    [SerializeField]
     private GameObject lastSelection;
     [SerializeField]
     private AudioController audioController;
@@ -24,20 +26,29 @@ public class SelectionController : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, entityLayer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, entityLayer) != lastSelection)
             {
-                hit.collider.GetComponent<OperatorBase>().OnClicked();
-                lastSelection = hit.collider.gameObject;
+                Debug.Log("hit player");
+                hit.collider.GetComponent<OperatorBase>().OnSelect();
+
+                if(lastSelection != null)
+                {
+                    lastSelection.GetComponent<OperatorBase>().OnUnselect();
+                }
+                else
+                {
+                    lastSelection = hit.collider.gameObject;
+                }
 
                 //Play Voice Clip for Selection
-                audioController.AudioSelected();
-            }
-            else if(lastSelection != null)
-            {
-                lastSelection.GetComponent<OperatorBase>().OnUnselect();
-                lastSelection = null;
+                PlayAudio();
             }
         }
     }
 #endif
+
+    public void PlayAudio()
+    {
+        audioController.AudioSelected();
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class SquadController : MonoBehaviour
@@ -9,14 +10,24 @@ public class SquadController : MonoBehaviour
 
     public bool isWaitingGOCODE;
 
-    public List<OperatorBase> operatorList;
+    public OperatorBase[] operatorList;
 
-    public void Start()
+    [SerializeField]
+    private Transform[] rallyPoints;
+
+    public void Update()
     {
-
-        for (int i = 0; i < (int)squadSize; i++)
+        for (int i = 0; i < operatorList.Length; i++)
         {
-            //Debug.Log("SquadPosition: " + i);
+            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
+        }
+    }
+
+    public void SquadSelection()
+    {
+        for (int i = 0; i < operatorList.Length; i++)
+        {
+            operatorList[i].OnSelect();
         }
     }
 }

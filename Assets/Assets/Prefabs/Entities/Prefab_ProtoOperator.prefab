@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 23290460806233022}
   - component: {fileID: 114003168615981082}
   - component: {fileID: 114211558119744500}
+  - component: {fileID: 195367505604651940}
   m_Layer: 8
   m_Name: Prefab_ProtoOperator
   m_TagString: Untagged
@@ -263,6 +264,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195367505604651940
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1276643567654472}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!212 &212203993969276502
 SpriteRenderer:
   m_ObjectHideFlags: 1
