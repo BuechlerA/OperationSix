@@ -15,8 +15,8 @@ TagManager:
   - 
   - Entity
   - Ground
-  - 
-  - 
+  - Enemy
+  - Wall
   - 
   - 
   - 

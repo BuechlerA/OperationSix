@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationSix", "OperationSix.csproj", "{5D211661-7D4D-B542-BF33-FF6ECD66014D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationSix.Editor", "OperationSix.Editor.csproj", "{5A6BD615-4022-3061-2179-CE07DD2EDE6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{5D211661-7D4D-B542-BF33-FF6ECD66014D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D211661-7D4D-B542-BF33-FF6ECD66014D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D211661-7D4D-B542-BF33-FF6ECD66014D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A6BD615-4022-3061-2179-CE07DD2EDE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A6BD615-4022-3061-2179-CE07DD2EDE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A6BD615-4022-3061-2179-CE07DD2EDE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A6BD615-4022-3061-2179-CE07DD2EDE6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
