@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
+	
+
+	void Start ()
+    {
 		
 	}
 	

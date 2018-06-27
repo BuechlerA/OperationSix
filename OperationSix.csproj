@@ -233,7 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AI\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\AI\OperatorAI.cs" />
+    <Compile Include="Assets\Scripts\AI\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
     <Compile Include="Assets\Scripts\Entities\HostageBase.cs" />
     <Compile Include="Assets\Scripts\Entities\HostileBase.cs" />
@@ -257,6 +257,7 @@
     <Compile Include="Assets\Scripts\GameController\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameController\SelectionController.cs" />
     <Compile Include="Assets\Scripts\GameController\SquadController.cs" />
+    <Compile Include="Assets\Scripts\GameController\WaypointController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
   </ItemGroup>

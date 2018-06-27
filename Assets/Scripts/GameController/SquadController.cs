@@ -15,12 +15,13 @@ public class SquadController : MonoBehaviour
     [SerializeField]
     private Transform[] rallyPoints;
 
+    [SerializeField]
+    private WaypointController waypointController;
+    private Transform currentWaypoint;
+
     public void Update()
     {
-        for (int i = 0; i < operatorList.Length; i++)
-        {
-            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
-        }
+
     }
 
     public void SquadSelection()
@@ -28,6 +29,14 @@ public class SquadController : MonoBehaviour
         for (int i = 0; i < operatorList.Length; i++)
         {
             operatorList[i].OnSelect();
+        }
+    }
+
+    public void MoveToWaypoint()
+    {
+        for (int i = 0; i < operatorList.Length; i++)
+        {
+            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(currentWaypoint.position);
         }
     }
 }

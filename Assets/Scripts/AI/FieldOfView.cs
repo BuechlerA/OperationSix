@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OperatorAI : MonoBehaviour
+public class FieldOfView : MonoBehaviour
 {
-    public SquadPosition squadPosition;
 
     public float viewRadius;
     [Range(0,360)]
