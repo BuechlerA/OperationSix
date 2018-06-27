@@ -1279,6 +1279,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c5a02fe9555a124a946c185f4c87ef8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &726979481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 726979482}
+  m_Layer: 0
+  m_Name: SquadPosition1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &726979482
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 726979481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1805211733}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &832528616
 Prefab:
   m_ObjectHideFlags: 0
@@ -2454,7 +2482,7 @@ MonoBehaviour:
   operatorList:
   - {fileID: 538895158}
   rallyPoints:
-  - {fileID: 0}
+  - {fileID: 726979482}
   waypointController: {fileID: 1263169143}
 --- !u!4 &1805211733
 Transform:
@@ -2465,7 +2493,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.36, y: 1.31, z: 3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 726979482}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2478,7 +2507,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4218795101895240, guid: b0a174dcfb832714b95df695b51d3a67, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.45
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 4218795101895240, guid: b0a174dcfb832714b95df695b51d3a67, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2486,7 +2515,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4218795101895240, guid: b0a174dcfb832714b95df695b51d3a67, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 6.78
+      value: 4.47
       objectReference: {fileID: 0}
     - target: {fileID: 4218795101895240, guid: b0a174dcfb832714b95df695b51d3a67, type: 2}
       propertyPath: m_LocalRotation.x

@@ -21,7 +21,7 @@ public class SquadController : MonoBehaviour
 
     public void Update()
     {
-
+        MoveToWaypoint();
     }
 
     public void SquadSelection()
@@ -36,7 +36,7 @@ public class SquadController : MonoBehaviour
     {
         for (int i = 0; i < operatorList.Length; i++)
         {
-            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(currentWaypoint.position);
+            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
         }
     }
 }
