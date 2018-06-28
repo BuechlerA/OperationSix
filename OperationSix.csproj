@@ -234,6 +234,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AI\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\AI\FieldOfView.cs" />
+    <Compile Include="Assets\Scripts\AI\OperatorAI.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
     <Compile Include="Assets\Scripts\Entities\HostageBase.cs" />
     <Compile Include="Assets\Scripts\Entities\HostileBase.cs" />
@@ -253,13 +254,16 @@
     <Compile Include="Assets\Scripts\Equipment\Attachments\GunClip.cs" />
     <Compile Include="Assets\Scripts\Equipment\Attachments\GunSight.cs" />
     <Compile Include="Assets\Scripts\Equipment\Guns\GunBase.cs" />
+    <Compile Include="Assets\Scripts\Equipment\Guns\Projectile.cs" />
     <Compile Include="Assets\Scripts\GameController\AudioController.cs" />
     <Compile Include="Assets\Scripts\GameController\CameraController.cs" />
+    <Compile Include="Assets\Scripts\GameController\PauseController.cs" />
     <Compile Include="Assets\Scripts\GameController\SelectionController.cs" />
     <Compile Include="Assets\Scripts\GameController\SquadController.cs" />
     <Compile Include="Assets\Scripts\GameController\WaypointController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\VFX\Effect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

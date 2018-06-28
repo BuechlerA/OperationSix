@@ -16,7 +16,6 @@ public class SquadController : MonoBehaviour
     private Transform[] rallyPoints;
 
     [SerializeField]
-    private WaypointController waypointController;
     private Transform currentWaypoint;
 
     public void Update()

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour, IDamageable
 {
-
-    private float health;
+    [SerializeField]
+    private float health = 3f;
     private float mentality;
     public StanceType stance;
+
+    protected bool isDead;
 
     public virtual void Move()
     {
@@ -40,8 +42,19 @@ public class Entity : MonoBehaviour, IDamageable
 
     }
 
-    public void TakeHit()
+    public void TakeHit(float damage, RaycastHit hit)
     {
+        health -= damage;
 
+        if(health <= 0 && !isDead)
+        {
+            Die();
+        }
+    }
+
+    protected void Die()
+    {
+        isDead = true;
+        Destroy(gameObject);
     }
 }

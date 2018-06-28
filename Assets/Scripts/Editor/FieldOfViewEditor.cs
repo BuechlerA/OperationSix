@@ -22,7 +22,14 @@ public class FieldOfViewEditor : Editor
         Handles.color = Color.red;
         foreach (Transform visibleTarget in fow.visibleTargets)
         {
-            Handles.DrawLine(fow.transform.position, visibleTarget.position);
+            if (fow.visibleTargets.Count <= 0)
+            {
+                return;
+            }
+            else if(fow.visibleTargets.Count >= 1)
+            {
+                Handles.DrawLine(fow.transform.position, visibleTarget.position);
+            }
         }
     }
 }

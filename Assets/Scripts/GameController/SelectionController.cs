@@ -28,7 +28,7 @@ public class SelectionController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, entityLayer) != lastSelection)
             {
-                Debug.Log("hit player");
+                Debug.Log("selected player");
                 hit.collider.GetComponent<OperatorBase>().OnSelect();
 
                 if(lastSelection != null)
