@@ -19,15 +19,4 @@ public class WaypointController : MonoBehaviour
 		
 	}
 
-    private void OnDrawGizmos()
-    {       
-        Gizmos.color = Color.green;
-
-        for (int i = 0; i < waypoints.Count; i++)
-        {
-            Vector3 currentWaypoint = waypoints[i].position;
-            Gizmos.DrawSphere(currentWaypoint, .5f);
-        }
-
-    }
 }
