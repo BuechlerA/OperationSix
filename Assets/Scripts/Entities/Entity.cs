@@ -55,6 +55,5 @@ public class Entity : MonoBehaviour, IDamageable
     protected void Die()
     {
         isDead = true;
-        Destroy(gameObject);
     }
 }

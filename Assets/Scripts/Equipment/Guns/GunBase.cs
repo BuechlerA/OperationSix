@@ -25,6 +25,7 @@ public class GunBase : MonoBehaviour
     public float reloadTime = 1.5f;
     public int clipSize = 30;
 
+    public bool isEmpty;
     bool isReloading = false;
     float nextShotTime;
 
@@ -58,6 +59,10 @@ public class GunBase : MonoBehaviour
         {
             //gunSound.PlayOneShot(soundEmpty);
             nextShotTime = Time.time + msBetweenShot / 150;
+            if (!isEmpty)
+            {
+                isEmpty = true;
+            }
         }
     }
 
@@ -71,6 +76,7 @@ public class GunBase : MonoBehaviour
             nextShotTime = Time.time + reloadTime;
 
             isReloading = false;
+            isEmpty = false;
         }
     }
 }
