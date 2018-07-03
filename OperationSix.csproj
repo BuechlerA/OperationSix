@@ -265,7 +265,9 @@
     <Compile Include="Assets\Scripts\IngameInterface\Waypoint.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
-    <Compile Include="Assets\Scripts\VFX\Effect.cs" />
+    <Compile Include="Assets\Scripts\VFX\FadeEffect.cs" />
+    <Compile Include="Assets\Scripts\VFX\MuzzleFlashEffect.cs" />
+    <Compile Include="Assets\Scripts\VFX\ShellEject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

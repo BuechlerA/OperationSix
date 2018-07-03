@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WaypointController : MonoBehaviour
 {
+    private bool isDragging = false;
 
-    public List<Transform> waypoints = new List<Transform>();
 
     private Vector3 myTouch;
     [SerializeField]
@@ -14,6 +15,8 @@ public class WaypointController : MonoBehaviour
     private SquadController squadController;
     [SerializeField]
     private GameObject wayPointGizmo;
+
+    public List<Transform> waypoints = new List<Transform>();
 
     void Start ()
     {
@@ -24,7 +27,8 @@ public class WaypointController : MonoBehaviour
     {
 
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonUp(0))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

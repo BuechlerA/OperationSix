@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : Effect
+public class Projectile : FadeEffect
 {
     public LayerMask collisionMask;
 

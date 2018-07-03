@@ -4,6 +4,7 @@ C:/Users/mha10/Desktop/OperationSix.apk
 SceneListBegin?
 Assets/Scenes/PrototypeScene.unity
 SceneListEnd?
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SceneController
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 4b12dd839b2293f8457cd67cc3610b85 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -121,7 +122,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 ff8aad349435229cd8f95b8a5e27e74e Assembly-CSharp.dll:.GunSight
-d0a79f5a6629ed4c5b720b50b356901d Assembly-CSharp.dll:.GunBase
+ce41c04e86b282ab19d8c6a38397cf0b Assembly-CSharp.dll:.GunBase
 166f08802adf7458d46c97123158cf7a Assembly-CSharp.dll:.HostileBase
 07f024394e978669c095c3132a98c6d9 Assembly-CSharp.dll:.EnemyAI
 c300cb710ceb477342ea2a849f62a59c Assembly-CSharp.dll:.AudioController
@@ -164,4 +165,3 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 24302707fd7854f1450d5e92337f96eb Assembly-CSharp.dll:.HostageBase
 cb82c4ee5bc2b4bd214b79d9e4406881 Assembly-CSharp.dll:.SquadController
 91ab18f8b4bc625cfcf020b64f777918 Assembly-CSharp.dll:.FieldOfView
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SceneController
