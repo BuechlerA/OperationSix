@@ -258,6 +258,7 @@
     <Compile Include="Assets\Scripts\GameController\AudioController.cs" />
     <Compile Include="Assets\Scripts\GameController\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameController\PauseController.cs" />
+    <Compile Include="Assets\Scripts\GameController\SceneController.cs" />
     <Compile Include="Assets\Scripts\GameController\SelectionController.cs" />
     <Compile Include="Assets\Scripts\GameController\SquadController.cs" />
     <Compile Include="Assets\Scripts\GameController\WaypointController.cs" />

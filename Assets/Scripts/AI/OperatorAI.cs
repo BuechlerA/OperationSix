@@ -52,7 +52,7 @@ public class OperatorAI : MonoBehaviour
         {
             return;
         }       
-        else if (detectedEnemy && !currentGun.isEmpty)
+        else if (currentTargets[0] != null && !currentGun.isEmpty)
         {
             currentGun.ShootGun();
         }
@@ -62,4 +62,16 @@ public class OperatorAI : MonoBehaviour
             Debug.Log("reloading");
         }
     }
+
+    //bool IsEnemyAlive()
+    //{
+    //    if (currentTargets[0] != null)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 }

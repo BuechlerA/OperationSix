@@ -20,6 +20,11 @@ public class GunBase : MonoBehaviour
     public Transform muzzle;
     public Projectile projectile;
 
+    private AudioSource gunSound;
+    public AudioClip[] soundShootClips;
+    public AudioClip soundEmpty;
+    public AudioClip soundReload;
+
     public float msBetweenShot = 100f;
     public float muzzleVelocity = 35f;
     public float reloadTime = 1.5f;
@@ -35,6 +40,7 @@ public class GunBase : MonoBehaviour
     private void Start()
     {
         defaultMagSize = clipSize;
+        gunSound = GetComponent<AudioSource>();
     }
 
     public virtual void ShootGun()
@@ -50,7 +56,7 @@ public class GunBase : MonoBehaviour
 
 
             //Instantiate(shell, shellEjection.position, shellEjection.rotation);
-            //playShotSound();
+            PlayShootSound();
             //muzzleFlash.Activate();
             clipSize -= 1;
 
@@ -71,12 +77,19 @@ public class GunBase : MonoBehaviour
         if (clipSize < defaultMagSize - 1)
         {
             isReloading = true;
-            //gunSound.PlayOneShot(soundReload);
+            gunSound.PlayOneShot(soundReload);
             clipSize = 30;
             nextShotTime = Time.time + reloadTime;
 
             isReloading = false;
             isEmpty = false;
         }
+    }
+
+    void PlayShootSound()
+    {
+        int clipNumber = Random.Range(0, soundShootClips.Length);
+        gunSound.clip = soundShootClips[clipNumber];
+        gunSound.Play();
     }
 }

@@ -17,8 +17,8 @@ public class CameraController : MonoBehaviour
     private Vector3 lastPanPosition;
     private int panFingerId;
 
-    private bool wasZooming;
-    private Vector2[] lastZoomPosition;
+    private bool wasZoomingLastFrame;
+    private Vector2[] lastZoomPositions;
 
     private void Awake()
     {
@@ -29,9 +29,11 @@ public class CameraController : MonoBehaviour
     {
 #if UNITY_EDITOR
         HandleMouse();
+        PinchZoom();
 #endif
 #if UNITY_ANDROID
         HandleTouch();
+        //PinchZoom();
 #endif
     }
 
@@ -52,7 +54,44 @@ public class CameraController : MonoBehaviour
 
     void HandleTouch()
     {
-
+        switch(Input.touchCount) {
+    
+                case 1: // Panning
+                    wasZoomingLastFrame = false;
+            
+                    // If the touch began, capture its position and its finger ID.
+                    // Otherwise, if the finger ID of the touch doesn't match, skip it.
+                    Touch touch = Input.GetTouch(0);
+                    if (touch.phase == TouchPhase.Began) {
+                        lastPanPosition = touch.position;
+                        panFingerId = touch.fingerId;
+                    } else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved) {
+                        PanCamera(touch.position);
+                    }
+                    break;
+    
+                case 2: // Zooming
+                    Vector2[] newPositions = new Vector2[]{Input.GetTouch(0).position, Input.GetTouch(1).position};
+                    if (!wasZoomingLastFrame) {
+                        lastZoomPositions = newPositions;
+                        wasZoomingLastFrame = true;
+                    } else {
+                        // Zoom based on the distance between the new positions compared to the 
+                        // distance between the previous positions.
+                        float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
+                        float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
+                        float offset = newDistance - oldDistance;
+    
+                        ZoomCamera(offset, zoomSpeed);
+    
+                        lastZoomPositions = newPositions;
+                    }
+                    break;
+            
+                default: 
+                    wasZoomingLastFrame = false;
+                    break;
+                }
     }
 
     void PanCamera(Vector3 newPanPosition)
@@ -78,5 +117,49 @@ public class CameraController : MonoBehaviour
         if (offset == 0)
         { return; }
         cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), zoomBounds[0], zoomBounds[1]);
+    }
+
+    public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
+    public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
+
+
+    void PinchZoom()
+    {
+        // If there are two touches on the device...
+        if (Input.touchCount == 2)
+        {
+            // Store both touches.
+            Touch touchZero = Input.GetTouch(0);
+            Touch touchOne = Input.GetTouch(1);
+
+            // Find the position in the previous frame of each touch.
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+            // Find the magnitude of the vector (the distance) between the touches in each frame.
+            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+            // Find the difference in the distances between each frame.
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+            // If the camera is orthographic...
+            if (cam.orthographic)
+            {
+                // ... change the orthographic size based on the change in distance between the touches.
+                cam.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
+
+                // Make sure the orthographic size never drops below zero.
+                cam.orthographicSize = Mathf.Max(cam.orthographicSize, 0.1f);
+            }
+            else
+            {
+                // Otherwise change the field of view based on the change in distance between the touches.
+                cam.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
+
+                // Clamp the field of view to make sure it's between 0 and 180.
+                cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, 0.1f, 179.9f);
+            }
+        }
     }
 }

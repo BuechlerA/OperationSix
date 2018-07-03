@@ -18,9 +18,10 @@ public class SquadController : MonoBehaviour
     [SerializeField]
     private Transform currentWaypoint;
 
+
     public void Update()
     {
-        MoveToWaypoint();
+        
     }
 
     public void SquadSelection()
@@ -31,11 +32,13 @@ public class SquadController : MonoBehaviour
         }
     }
 
-    public void MoveToWaypoint()
+    public void MoveToWaypoint(Vector3 myTouch)
     {
+
         for (int i = 0; i < operatorList.Length; i++)
         {
-            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
+            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(myTouch);
         }
+
     }
 }

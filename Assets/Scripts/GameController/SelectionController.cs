@@ -44,8 +44,8 @@ public class SelectionController : MonoBehaviour
                 PlayAudio();
             }
         }
-    }
 #endif
+    }
 
     public void PlayAudio()
     {
