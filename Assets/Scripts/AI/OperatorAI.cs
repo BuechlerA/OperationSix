@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class OperatorAI : MonoBehaviour
 {
@@ -14,17 +15,26 @@ public class OperatorAI : MonoBehaviour
 
     private bool detectedEnemy = false;
 
+    [SerializeField]
+    private NavMeshAgent soldierNavMeshAgent;
+    private Animation_Soldier animationSoldier;
 
     private void Start()
     {
         currentTargets = GetComponent<FieldOfView>().visibleTargets;
         currentGun = GetComponentInChildren<GunBase>();
+        soldierNavMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void LateUpdate()
     {
         LookAtEnemy();
         AttackEnemy();
+
+        if (true)
+        {
+
+        }
     }
 
     private void LookAtEnemy()
@@ -55,6 +65,8 @@ public class OperatorAI : MonoBehaviour
         else if (currentTargets[0] != null && !currentGun.isEmpty)
         {
             currentGun.ShootGun();
+
+            animationSoldier.SetShooting();
         }
         else if (currentGun.isEmpty)
         {
