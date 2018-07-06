@@ -13,10 +13,17 @@ public class OperatorAI : MonoBehaviour
     [Range(0, 100)]
     private float damping = 2.0f;
 
+    [SerializeField]
+    private float agentVelocity = 1.0f;
+    [SerializeField]
+    private float currentAgentVelocity;
+
+    [SerializeField]
     private bool detectedEnemy = false;
 
     [SerializeField]
     private NavMeshAgent soldierNavMeshAgent;
+    [SerializeField]
     private Animation_Soldier animationSoldier;
 
     private void Start()
@@ -24,41 +31,54 @@ public class OperatorAI : MonoBehaviour
         currentTargets = GetComponent<FieldOfView>().visibleTargets;
         currentGun = GetComponentInChildren<GunBase>();
         soldierNavMeshAgent = GetComponent<NavMeshAgent>();
+        animationSoldier = GetComponentInChildren<Animation_Soldier>();
     }
 
     private void LateUpdate()
     {
-        LookAtEnemy();
-        AttackEnemy();
-
-        if (true)
+        if(!GetComponent<Entity>().isDead)
         {
+            LookAtEnemy();
+            AttackEnemy();
 
+            currentAgentVelocity = soldierNavMeshAgent.velocity.magnitude;
+
+            if (soldierNavMeshAgent.velocity.magnitude >= agentVelocity && animationSoldier != null)
+            {
+                animationSoldier.SetWalking();
+                animationSoldier.SetWalkingSpeed(currentAgentVelocity);
+            }
+            else
+            {
+                animationSoldier.SetIdle();
+                animationSoldier.SetWalkingSpeed(currentAgentVelocity);
+            }
+        }
+        else
+        {
+            return;
         }
     }
 
     private void LookAtEnemy()
     {
-        if (currentTargets.Count >= 1)
+        if (currentTargets.Count < 1)
         {
-            if (currentTargets[0] == null)
-            {
-                return;               
-            }
-            else
-            {
-                Quaternion rotation = Quaternion.LookRotation(currentTargets[0].position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+            detectedEnemy = false;
+            return;
+        }
+        else
+        {
+            Quaternion rotation = Quaternion.LookRotation(currentTargets[0].position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
 
-                detectedEnemy = true;
-            }
-
+            detectedEnemy = true;
         }
     }
 
     private void AttackEnemy()
     {
-        if (!detectedEnemy)
+        if (!detectedEnemy || currentTargets[0].gameObject.GetComponent<Entity>().isDead)
         {
             return;
         }       

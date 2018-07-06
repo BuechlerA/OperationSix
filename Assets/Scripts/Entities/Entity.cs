@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Entity : MonoBehaviour, IDamageable
 {
@@ -9,7 +10,7 @@ public class Entity : MonoBehaviour, IDamageable
     private float mentality;
     public StanceType stance;
 
-    protected bool isDead;
+    public bool isDead;
 
     public virtual void Move()
     {
@@ -55,6 +56,10 @@ public class Entity : MonoBehaviour, IDamageable
     protected void Die()
     {
         isDead = true;
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        GetComponentInChildren<Animator>().enabled = false;
+        GetComponentInChildren<NavMeshAgent>().enabled = false;
+        
+        gameObject.layer = 13;
     }
 }

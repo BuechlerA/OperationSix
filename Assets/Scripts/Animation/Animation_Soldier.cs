@@ -12,7 +12,12 @@ public class Animation_Soldier : MonoBehaviour
     {
         soldierAnimator = GetComponentInChildren<Animator>();
 	}
-	
+
+    public void SetWalkingSpeed(float currentVelocity)
+    {
+        soldierAnimator.SetFloat("MoveBlend", currentVelocity);
+    }
+
     public void SetWalking()
     {
         if (!soldierAnimator.GetBool("isMoving"))
@@ -26,6 +31,14 @@ public class Animation_Soldier : MonoBehaviour
         if (!soldierAnimator.GetBool("isAttacking"))
         {
             soldierAnimator.SetBool("isAttacking", true);
+        }
+    }
+
+    public void SetIdle()
+    {
+        if (soldierAnimator.GetBool("isMoving"))
+        {
+            soldierAnimator.SetBool("isMoving", false);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class WaypointController : MonoBehaviour
 {
     private bool isDragging = false;
-
+    private bool isClickedEvent = false;
 
     private Vector3 myTouch;
     [SerializeField]
@@ -30,6 +30,8 @@ public class WaypointController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            isClickedEvent = true;
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -38,8 +40,12 @@ public class WaypointController : MonoBehaviour
                 myTouch = hit.point;
             }
 
-            squadController.MoveToWaypoint(myTouch);
-            wayPointGizmo.transform.position = myTouch;
+            if (isClickedEvent)
+            {
+                squadController.MoveToWaypoint(myTouch);
+                wayPointGizmo.transform.position = myTouch;
+                isClickedEvent = false;
+            }
         }
 #endif
 
@@ -49,6 +55,7 @@ public class WaypointController : MonoBehaviour
         {
             if (Input.GetTouch(i).phase == TouchPhase.Ended)
             {
+                isClickedEvent = true;
 
                 RaycastHit hit;
                 Ray touchRay = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
@@ -61,8 +68,12 @@ public class WaypointController : MonoBehaviour
             }
         }
 
-        squadController.MoveToWaypoint(myTouch);
-        wayPointGizmo.transform.position = myTouch;
+        if (isClickedEvent)
+        {
+            squadController.MoveToWaypoint(myTouch);
+            wayPointGizmo.transform.position = myTouch;
+            isClickedEvent = false;
+        }
     }
 #endif
 
