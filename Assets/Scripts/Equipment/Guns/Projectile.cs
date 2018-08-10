@@ -32,7 +32,7 @@ public class Projectile : FadeEffect
         if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
         {
             OnHitObject(hit);
-            GameObject.Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

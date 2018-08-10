@@ -53,12 +53,14 @@ public class Entity : MonoBehaviour, IDamageable
         }
     }
 
+    [ContextMenu("Die")]
     protected void Die()
     {
         isDead = true;
         //Destroy(gameObject);
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<NavMeshAgent>().enabled = false;
+        
         
         gameObject.layer = 13;
     }

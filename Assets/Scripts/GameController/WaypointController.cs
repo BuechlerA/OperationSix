@@ -42,11 +42,16 @@ public class WaypointController : MonoBehaviour
 
             if (isClickedEvent)
             {
+                int index = 0;
+
                 squadController.MoveToWaypoint(myTouch);
                 wayPointGizmo.transform.position = myTouch;
+                //waypoints.Add();
+                index++;
                 isClickedEvent = false;
             }
         }
+
 #endif
 
         #region AndroidSpecific
@@ -77,5 +82,19 @@ public class WaypointController : MonoBehaviour
     }
 #endif
 
-        #endregion
+    #endregion
+
+    private void OnDrawGizmos()
+    {
+        if (waypoints.Count > 0)
+        {
+
+            Gizmos.color = Color.green;
+
+            foreach (Transform transform in waypoints)
+            {
+                Gizmos.DrawSphere(transform.position, 1f);
+            }
+        }
+    }
 }
