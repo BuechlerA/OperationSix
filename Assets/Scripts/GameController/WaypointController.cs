@@ -82,9 +82,9 @@ public class WaypointController : MonoBehaviour
     }
 #endif
 
-    #endregion
+        #endregion
 
-    private void OnDrawGizmos()
+        private void OnDrawGizmos()
     {
         if (waypoints.Count > 0)
         {
