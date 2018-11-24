@@ -34,6 +34,7 @@ public class SquadController : MonoBehaviour
 
     public void MoveToWaypoint(Vector3 myTouch)
     {
+        Debug.Log("current waypoint: " + myTouch);
 
         for (int i = 0; i < operatorList.Length; i++)
         {

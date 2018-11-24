@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private float health = 3f;
-    private float mentality;
+    private float mentality = 3f;
     public StanceType stance;
 
     public bool isDead;
@@ -46,6 +46,7 @@ public class Entity : MonoBehaviour, IDamageable
     public void TakeHit(float damage, RaycastHit hit)
     {
         health -= damage;
+        mentality -= damage;
 
         if(health <= 0 && !isDead)
         {
@@ -60,6 +61,7 @@ public class Entity : MonoBehaviour, IDamageable
         //Destroy(gameObject);
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<NavMeshAgent>().enabled = false;
+        
         
         
         gameObject.layer = 13;

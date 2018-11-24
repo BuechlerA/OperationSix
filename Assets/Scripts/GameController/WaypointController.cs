@@ -16,16 +16,15 @@ public class WaypointController : MonoBehaviour
     [SerializeField]
     private GameObject wayPointGizmo;
 
-    public List<Transform> waypoints = new List<Transform>();
+    public List<Vector3> waypoints = new List<Vector3>();
 
-    void Start ()
+    void Start()
     {
         squadController = GetComponent<SquadController>();
-	}
-	
-	void Update ()
-    {
+    }
 
+    void Update()
+    {
 #if UNITY_EDITOR || UNITY_STANDALONE
 
         if (Input.GetMouseButtonUp(0))
@@ -44,22 +43,26 @@ public class WaypointController : MonoBehaviour
             {
                 int index = 0;
 
-                squadController.MoveToWaypoint(myTouch);
+                //squadController.MoveToWaypoint(myTouch);
                 wayPointGizmo.transform.position = myTouch;
-                //waypoints.Add();
-                index++;
+                waypoints.Add(myTouch);
+                //index++;
+                for (int i = 0; i < waypoints.Count; i++)
+                {
+                    squadController.MoveToWaypoint(waypoints[i]);
+                }
                 isClickedEvent = false;
             }
         }
-
 #endif
+    }
 
-        #region AndroidSpecific
+    #region AndroidSpecific
 #if UNITY_ANDROID
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            if (Input.GetTouch(i).phase == TouchPhase.Ended)
-            {
+    for (int i = 0; i < Input.touchCount; i++)
+    {
+        if (Input.GetTouch(i).phase == TouchPhase.Ended)
+    {
                 isClickedEvent = true;
 
                 RaycastHit hit;
@@ -71,7 +74,7 @@ public class WaypointController : MonoBehaviour
                 }
 
             }
-        }
+    }
 
         if (isClickedEvent)
         {
@@ -81,20 +84,5 @@ public class WaypointController : MonoBehaviour
         }
     }
 #endif
-
-        #endregion
-
-        private void OnDrawGizmos()
-    {
-        if (waypoints.Count > 0)
-        {
-
-            Gizmos.color = Color.green;
-
-            foreach (Transform transform in waypoints)
-            {
-                Gizmos.DrawSphere(transform.position, 1f);
-            }
-        }
-    }
+    #endregion
 }
