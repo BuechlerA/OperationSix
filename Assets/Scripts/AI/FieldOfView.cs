@@ -21,7 +21,7 @@ public class FieldOfView : MonoBehaviour
     public float edgeDistanceThreshold;
 
     public MeshFilter viewMeshFilter;
-    Mesh viewMesh;
+    public Mesh viewMesh;
 
     private void Start()
     {

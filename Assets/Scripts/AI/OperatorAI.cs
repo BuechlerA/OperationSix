@@ -21,10 +21,12 @@ public class OperatorAI : MonoBehaviour
     [SerializeField]
     private bool detectedEnemy = false;
 
-    [SerializeField]
+    //[SerializeField]
     private NavMeshAgent soldierNavMeshAgent;
-    [SerializeField]
+    //[SerializeField]
     private Animation_Soldier animationSoldier;
+    //[SerializeField]
+    private GUIMessageText guiMessageText;
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class OperatorAI : MonoBehaviour
         currentGun = GetComponentInChildren<GunBase>();
         soldierNavMeshAgent = GetComponent<NavMeshAgent>();
         animationSoldier = GetComponentInChildren<Animation_Soldier>();
+        guiMessageText = GameObject.Find("MessageText").GetComponent<GUIMessageText>();
     }
 
     private void LateUpdate()
@@ -73,15 +76,20 @@ public class OperatorAI : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
 
             detectedEnemy = true;
+            guiMessageText.SetText("Enemy Found!");
         }
     }
 
     private void AttackEnemy()
     {
-        if (!detectedEnemy || currentTargets[0].gameObject.GetComponent<Entity>().isDead)
-        {
+        if (!detectedEnemy)
+        {           
             return;
-        }       
+        }
+        else if (currentTargets[0].gameObject.GetComponent<Entity>().isDead)
+        {
+            guiMessageText.SetText("Enemy neutralized!");
+        }
         else if (currentTargets[0] != null && !currentGun.isEmpty)
         {
             currentGun.ShootGun();
@@ -91,7 +99,7 @@ public class OperatorAI : MonoBehaviour
         else if (currentGun.isEmpty)
         {
             currentGun.ReloadGun();
-            Debug.Log("reloading");
+            guiMessageText.SetText("Reloading!");
         }
     }
 

@@ -18,6 +18,8 @@ public class WaypointController : MonoBehaviour
 
     public List<Vector3> waypoints = new List<Vector3>();
 
+    int index = 0;
+
     void Start()
     {
         squadController = GetComponent<SquadController>();
@@ -41,20 +43,25 @@ public class WaypointController : MonoBehaviour
 
             if (isClickedEvent)
             {
-                int index = 0;
 
                 //squadController.MoveToWaypoint(myTouch);
                 wayPointGizmo.transform.position = myTouch;
                 waypoints.Add(myTouch);
-                //index++;
-                for (int i = 0; i < waypoints.Count; i++)
-                {
-                    squadController.MoveToWaypoint(waypoints[i]);
-                }
+                GoToPoint(index);
+                index++;
+                //for (int i = 0; i < waypoints.Count; i++)
+                //{
+                //    squadController.MoveToWaypoint(waypoints[i]);
+                //}
                 isClickedEvent = false;
             }
         }
 #endif
+    }
+
+    void GoToPoint(int i)
+    {
+        squadController.MoveToWaypoint(waypoints[i]);     
     }
 
     #region AndroidSpecific

@@ -61,7 +61,7 @@ public class Entity : MonoBehaviour, IDamageable
         //Destroy(gameObject);
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<NavMeshAgent>().enabled = false;
-        
+        GetComponentInChildren<ViewVisualization>().Disable();
         
         
         gameObject.layer = 13;
