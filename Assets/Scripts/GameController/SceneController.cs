@@ -8,6 +8,13 @@ public class SceneController : MonoBehaviour
     [Range(0, 1)]
     public float timeFactor;
 
+    private PauseController pauseController;
+
+    private void Start()
+    {
+        pauseController = GetComponent<PauseController>();
+    }
+
     public void RestartScene()
     {
         SceneManager.LoadScene(0);
@@ -16,5 +23,10 @@ public class SceneController : MonoBehaviour
     private void Update()
     {
         Time.timeScale = timeFactor;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            pauseController.Pause();
+        }
     }
 }

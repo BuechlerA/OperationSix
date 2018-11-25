@@ -5,13 +5,20 @@ using UnityEngine;
 public class PauseController : MonoBehaviour
 {
 
+    private SceneController sceneController;
     public bool isPaused = false;
+
+    private void Start()
+    {
+        sceneController = GetComponent<SceneController>();
+    }
 
     public void Pause()
     {
         if (!isPaused)
         {
-            Time.timeScale = 0;
+            sceneController.timeFactor = Mathf.Lerp(0f, 1f, Time.deltaTime);
+            //Time.timeScale = 0;
             isPaused = true;
         }
         else
@@ -24,7 +31,7 @@ public class PauseController : MonoBehaviour
     {
         if (isPaused)
         {
-            Time.timeScale = 1;
+            sceneController.timeFactor = Mathf.Lerp(1f, 0f, Time.deltaTime);
             isPaused = false;
         }
     }
