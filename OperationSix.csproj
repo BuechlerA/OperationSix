@@ -264,6 +264,7 @@
     <Compile Include="Assets\Scripts\GameController\SelectionController.cs" />
     <Compile Include="Assets\Scripts\GameController\SquadController.cs" />
     <Compile Include="Assets\Scripts\GameController\WaypointController.cs" />
+    <Compile Include="Assets\Scripts\GUI\GUICommand.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIMessageText.cs" />
     <Compile Include="Assets\Scripts\IngameInterface\Waypoint.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />

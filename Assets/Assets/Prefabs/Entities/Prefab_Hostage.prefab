@@ -41,7 +41,8 @@ GameObject:
   - component: {fileID: 136079949528032452}
   - component: {fileID: 23817621986742612}
   - component: {fileID: 114184891597278672}
-  m_Layer: 0
+  - component: {fileID: 195811472632439502}
+  m_Layer: 14
   m_Name: Prefab_Hostage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1729682600293852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.67, y: 0.81265, z: -10.48}
+  m_LocalPosition: {x: -6.3247128, y: 1.031019, z: -0.254241}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4320217204556732}
@@ -180,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a57c70e782d84343bfcc801705cf5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
   stance: 0
+  isDead: 0
 --- !u!136 &136079949528032452
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -194,3 +197,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195811472632439502
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1729682600293852}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

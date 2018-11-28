@@ -29,39 +29,44 @@ public class WaypointController : MonoBehaviour
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            isClickedEvent = true;
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    isClickedEvent = true;
 
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
 
-            if (Physics.Raycast(ray, out hit, groundLayer))
-            {
-                myTouch = hit.point;
-            }
+        //    if (isClickedEvent)
+        //    {
 
-            if (isClickedEvent)
-            {
-
-                //squadController.MoveToWaypoint(myTouch);
-                wayPointGizmo.transform.position = myTouch;
-                waypoints.Add(myTouch);
-                GoToPoint(index);
-                index++;
-                //for (int i = 0; i < waypoints.Count; i++)
-                //{
-                //    squadController.MoveToWaypoint(waypoints[i]);
-                //}
-                isClickedEvent = false;
-            }
-        }
+        //        //squadController.MoveToWaypoint(myTouch);
+        //        wayPointGizmo.transform.position = myTouch;
+        //        waypoints.Add(myTouch);
+        //        GoToPoint(index);
+        //        index++;
+        //        //for (int i = 0; i < waypoints.Count; i++)
+        //        //{
+        //        //    squadController.MoveToWaypoint(waypoints[i]);
+        //        //}
+        //        isClickedEvent = false;
+        //    }
+        //}
 #endif
     }
 
-    void GoToPoint(int i)
+    public void GoToPoint(Vector2 clickPos)
     {
-        squadController.MoveToWaypoint(waypoints[i]);     
+        isClickedEvent = true;
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(clickPos);
+
+        if (Physics.Raycast(ray, out hit, groundLayer))
+        {
+            myTouch = hit.point;
+        }
+
+        //wayPointGizmo.transform.position = myTouch;
+        squadController.MoveToWaypoint(myTouch);     
     }
 
     #region AndroidSpecific

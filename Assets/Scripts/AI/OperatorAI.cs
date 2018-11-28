@@ -76,7 +76,10 @@ public class OperatorAI : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
 
             detectedEnemy = true;
-            guiMessageText.SetText("Enemy Found!");
+            if (gameObject.tag == "friendly")
+            {
+                guiMessageText.SetText("Enemy Found!");
+            }
         }
     }
 
