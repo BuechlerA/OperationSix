@@ -6,6 +6,7 @@ TagManager:
   tags:
   - waypoint
   - viewcone
+  - friendly
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Wall
   - Interface
   - Dead
-  - 
+  - Hostage
   - 
   - 
   - 

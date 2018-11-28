@@ -460,8 +460,9 @@ GameObject:
   - component: {fileID: 4385610348437412}
   - component: {fileID: 33359063435464116}
   - component: {fileID: 23737571829168814}
+  - component: {fileID: 114616554379200932}
   m_Layer: 8
-  m_Name: View Visualization
+  m_Name: ViewVisualization
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1782,6 +1783,18 @@ MonoBehaviour:
   - {fileID: 212246122801200522}
   - {fileID: 212099824987161246}
   flashTime: 0.1
+--- !u!114 &114616554379200932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624191532267026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa197aab1fd737946b77f72298c4ae0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewCone: {fileID: 0}
 --- !u!114 &114921233798508864
 MonoBehaviour:
   m_ObjectHideFlags: 1
