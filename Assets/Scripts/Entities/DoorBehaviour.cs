@@ -21,10 +21,7 @@ public class DoorBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.)
-        {
 
-        }
 	}
 
     public void SetLock(bool lockStatus)

@@ -31,8 +31,15 @@ public class PauseController : MonoBehaviour
     {
         if (isPaused)
         {
-            sceneController.timeFactor = Mathf.Lerp(1f, 0f, Time.deltaTime);
             isPaused = false;
+        }
+    }
+
+    void Update()
+    {
+        if (isPaused)
+        {
+            sceneController.timeFactor = Mathf.Lerp(1f, 0f, Time.deltaTime);
         }
     }
 }

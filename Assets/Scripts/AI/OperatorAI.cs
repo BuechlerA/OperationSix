@@ -106,6 +106,11 @@ public class OperatorAI : MonoBehaviour
         }
     }
 
+    //public void OpenDoor(GameObject door)
+    //{
+    //    soldierNavMeshAgent.SetDestination(door.Find("PlantPosition1").transform.position);
+    //}
+
     //bool IsEnemyAlive()
     //{
     //    if (currentTargets[0] != null)

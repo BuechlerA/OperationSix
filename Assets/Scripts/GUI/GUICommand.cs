@@ -61,9 +61,10 @@ public class GUICommand : MonoBehaviour
         ExitMenu();
     }
 
-    public void OpenDoor()
+    public void OpenDoorButton()
     {
-        //waypointController.GoToPoint();
+        waypointController.GoToDoor(clickPosition);
+        ExitMenu();
     }
 
     public void ExitMenu()
