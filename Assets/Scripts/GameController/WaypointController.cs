@@ -11,6 +11,8 @@ public class WaypointController : MonoBehaviour
     private Vector3 myTouch;
     [SerializeField]
     private LayerMask groundLayer;
+    [SerializeField]
+    private LayerMask doorLayer;
 
     private SquadController squadController;
     [SerializeField]
@@ -63,6 +65,11 @@ public class WaypointController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, groundLayer))
         {
             myTouch = hit.point;
+        }
+        if (Physics.Raycast(ray, out hit, doorLayer))
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            myTouch = hit.collider.gameObject.transform.Find("PlantPosition1").transform.position;
         }
 
         //wayPointGizmo.transform.position = myTouch;

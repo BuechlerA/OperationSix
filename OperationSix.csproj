@@ -237,6 +237,7 @@
     <Compile Include="Assets\Scripts\AI\OperatorAI.cs" />
     <Compile Include="Assets\Scripts\AI\ViewVisualization.cs" />
     <Compile Include="Assets\Scripts\Animation\Animation_Soldier.cs" />
+    <Compile Include="Assets\Scripts\Entities\DoorBehaviour.cs" />
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
     <Compile Include="Assets\Scripts\Entities\HostageBase.cs" />
     <Compile Include="Assets\Scripts\Entities\HostileBase.cs" />

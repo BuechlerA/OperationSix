@@ -61,6 +61,11 @@ public class GUICommand : MonoBehaviour
         ExitMenu();
     }
 
+    public void OpenDoor()
+    {
+        //waypointController.GoToPoint();
+    }
+
     public void ExitMenu()
     {
         SetChildrenStatus(false);
