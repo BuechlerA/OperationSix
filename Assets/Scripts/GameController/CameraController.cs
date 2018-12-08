@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     float panSpeed = 20f;
     float zoomSpeed = 2f;
+    public float rotateSpeed = 5f;
 
     float[] BoundaryX = new float[] { -100f, 100f };
     float[] BoundaryZ = new float[] { -100f, 100f };
@@ -30,6 +31,7 @@ public class CameraController : MonoBehaviour
 #if UNITY_EDITOR
         HandleMouse();
         PinchZoom();
+        RotateCamera();
 #endif
 #if UNITY_ANDROID
         HandleTouch();
@@ -161,5 +163,20 @@ public class CameraController : MonoBehaviour
                 cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, 0.1f, 179.9f);
             }
         }
+    }
+
+    void RotateCamera()
+    {
+        RaycastHit hit;
+        Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                transform.Rotate(hit.point, Time.deltaTime * rotateSpeed);
+            }
+        }
+
     }
 }
