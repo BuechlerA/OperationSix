@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class GUICommand : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 clickPosition;
+    private Vector3 clickPosition;
+    private Vector3 doorPosition;
+
+    public LayerMask doorLayer;
 
     private WaypointController waypointController;
 
@@ -38,6 +41,7 @@ public class GUICommand : MonoBehaviour
             clickPosition = Input.mousePosition;
             SetPosition(clickPosition);
         }
+
 	}
 
     void SetChildrenStatus(bool toSet)

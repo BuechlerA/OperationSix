@@ -1743,7 +1743,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 34816
   visibleTargets: []
   meshResolution: 1
   edgeResolveIterations: 4
@@ -2491,7 +2491,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1276643567654472}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.8
+  m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 5
   avoidancePriority: 50

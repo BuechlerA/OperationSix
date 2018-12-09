@@ -65,24 +65,32 @@ public class WaypointController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, groundLayer))
         {
             myTouch = hit.point;
+            Debug.DrawRay(ray.origin, ray.direction * 500f, Color.green, 4f);
         }
 
         //wayPointGizmo.transform.position = myTouch;
         squadController.MoveToWaypoint(myTouch);     
     }
+
     public void GoToDoor(Vector2 clickPos)
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(clickPos);
 
+        Debug.DrawRay(ray.origin, ray.direction * 500f, Color.red, 4f);
+
         if (Physics.Raycast(ray, out hit, doorLayer))
         {
-            Debug.Log(hit.collider.gameObject.name + "clicked");
-            
-            //myTouch = hit.collider.gameObject.transform.Find("PlantPosition1").transform.position;
+            Debug.Log(hit.collider.gameObject.name + " clicked");      
+
+            myTouch = hit.collider.gameObject.transform.Find("PlantPosition1").transform.position;
+        }
+        else
+        {
+            return;
         }
 
-        //squadController.MoveToWaypoint(myTouch);
+        squadController.MoveToDoor(myTouch, hit.collider.GetComponent<DoorBehaviour>().doorRallyPoints, hit.collider.GetComponent<DoorBehaviour>());
     }
 
     #region AndroidSpecific

@@ -28,7 +28,7 @@ public class SelectionController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, entityLayer) != lastSelection)
             {
-                Debug.Log("selected player");
+                //Debug.Log("selected player");
                 hit.collider.GetComponent<OperatorBase>().OnSelect();
 
                 if(lastSelection != null)
@@ -49,6 +49,6 @@ public class SelectionController : MonoBehaviour
 
     public void PlayAudio()
     {
-        audioController.AudioSelected();
+        //audioController.AudioSelected();
     }
 }

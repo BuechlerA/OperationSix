@@ -1,20 +1,28 @@
 fileFormatVersion: 2
-guid: 82f94395aa3fdf34cb8853217a0136bd
-timeCreated: 1530185735
-licenseType: Free
+guid: 9f9d63becc3f6f0458c96cefeb27866b
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Gun
-    2100002: Stock
-    2100004: Magazine
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cube
+    100000: Bone
+    100002: Door
+    100004: //RootNode
+    100006: DoorFrame
+    100008: HingeBone
+    400000: Bone
+    400002: Door
+    400004: //RootNode
+    400006: DoorFrame
+    400008: HingeBone
+    2100000: Door
+    2100002: Frame
+    2300000: DoorFrame
+    3300000: DoorFrame
+    4300000: Door
+    4300002: DoorFrame
     7400000: Default Take
+    7400002: HingeBoneAction
     9500000: //RootNode
+    13700000: Door
   externalObjects: {}
   materials:
     importMaterials: 1

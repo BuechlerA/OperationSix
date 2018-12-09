@@ -9,6 +9,8 @@ public class SquadController : MonoBehaviour
     public SquadSize squadSize;
 
     public bool isWaitingGOCODE;
+    public bool isMovingToDoor;
+    public bool isCurrentlyOpening = false;
 
     public OperatorBase[] operatorList;
 
@@ -18,10 +20,31 @@ public class SquadController : MonoBehaviour
     [SerializeField]
     private Transform currentWaypoint;
 
+    private DoorBehaviour currentDoor;
+
 
     public void Update()
     {
-        
+
+        //Debug.Log("Remaining Distance to Spot:" + operatorList[0].GetComponent<NavMeshAgent>().remainingDistance);
+
+        if (isMovingToDoor)
+        {
+            for (int i = 0; i < operatorList.Length; i++)
+            {
+                if (operatorList[i].GetComponent<NavMeshAgent>().remainingDistance <= 0.1f)
+                {
+                    Debug.Log("arrived at Door!");
+                    if (!isCurrentlyOpening)
+                    {
+                        StartCoroutine(OpenLock());
+                    }
+                    //currentDoor.SetLock(true);
+
+                    isMovingToDoor = false;
+                }
+            }
+        }
     }
 
     public void SquadSelection()
@@ -34,12 +57,37 @@ public class SquadController : MonoBehaviour
 
     public void MoveToWaypoint(Vector3 myTouch)
     {
-        Debug.Log("current waypoint: " + myTouch);
+        //Debug.Log("current waypoint: " + myTouch);
+
+        transform.position = myTouch;
 
         for (int i = 0; i < operatorList.Length; i++)
         {
-            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(myTouch);
+            //operatorList[i].GetComponent<NavMeshAgent>().SetDestination(myTouch);
+            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
         }
 
+    }
+
+    public void MoveToDoor(Vector3 myTouch, Transform[] doorPoints, DoorBehaviour selectedDoor)
+    {
+        isMovingToDoor = true;
+
+        currentDoor = selectedDoor;
+
+        for (int i = 0; i < operatorList.Length; i++)
+        {
+            //operatorList[i].GetComponent<NavMeshAgent>().SetDestination(myTouch);
+            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(doorPoints[i].position);
+        }
+    }
+
+    IEnumerator OpenLock()
+    {
+        isCurrentlyOpening = true;
+        Debug.Log("unlocking door!");
+        yield return new WaitForSeconds(3f);
+        currentDoor.SetLock(true);
+        isCurrentlyOpening = false;
     }
 }

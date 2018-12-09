@@ -1,39 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DoorBehaviour : MonoBehaviour
 {
 
     public bool isOpen;
-
     [SerializeField]
-    private Material doorMaterial;
+    private Animator doorAnimator;
 
-    bool lockStatus = false;
+    public Transform[] doorRallyPoints = new Transform[3];
 
 	void Start ()
-    {
-        doorMaterial = GetComponent<Renderer>().material;
+    {   
+        doorAnimator = GetComponentInChildren<Animator>();
+
         SetLock(false);
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
 
-	}
 
+    //false is closed
+    //true is open
     public void SetLock(bool lockStatus)
     {
-        if (isOpen == lockStatus)
-        {
-            isOpen = !lockStatus;
-            doorMaterial.color = Color.red;
-        }
-        else
-        {
-            doorMaterial.color = Color.green;
-        }
+        isOpen = lockStatus;
+
+        doorAnimator.SetBool("isOpen", lockStatus);
+        GetComponent<Collider>().enabled = !lockStatus;
+        GetComponent<NavMeshObstacle>().enabled = !lockStatus;         
     }
 }
