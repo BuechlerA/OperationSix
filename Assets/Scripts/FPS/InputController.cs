@@ -6,6 +6,8 @@ public class InputController : MonoBehaviour
 {
     public PlayerBehaviour playerBehaviour;
 
+    public InputMode inputMode;
+
     private Vector3 moveInput;
     private Vector3 viewInput;
 
@@ -47,6 +49,35 @@ public class InputController : MonoBehaviour
             {
                 playerBehaviour.isRunning = false;
             }
+
+            if (Input.GetButton("Fire1"))
+            {
+                if (playerBehaviour.isShooting)
+                {
+                    return;
+                }
+                else
+                {
+                    playerBehaviour.PlayerShootGun();
+                }
+            }
+
+            if (Input.GetButton("Fire2"))
+            {
+                if (playerBehaviour.isInteracting)
+                {
+                    return;
+                }
+                else
+                {
+                    playerBehaviour.PlayerInteract();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                playerBehaviour.PlayerReloadGun();
+            }
         }
     }
 
@@ -55,5 +86,12 @@ public class InputController : MonoBehaviour
         inputEnabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public enum InputMode
+    {
+        FPS,
+        TPS,
+        Observation
     }
 }

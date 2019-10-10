@@ -16,6 +16,8 @@ public class PlayerBehaviour : MonoBehaviour
     public float gravity = 20f;
 
     public bool isRunning = false;
+    public bool isInteracting = false;
+    public bool isShooting = false;
 
     public void GetInput(Vector3 moveVector, Vector3 viewVector)
     {
@@ -40,5 +42,20 @@ public class PlayerBehaviour : MonoBehaviour
     {
         transform.localEulerAngles += new Vector3(0, viewVector.y, 0);
         cam.transform.localEulerAngles += new Vector3(Mathf.Clamp(-viewVector.x, -80f, 80f), 0, 0);
+    }
+
+    public void PlayerInteract()
+    {
+
+    }
+
+    public void PlayerShootGun()
+    {
+        GetComponentInChildren<GunBase>().ShootGun();     
+    }
+
+    public void PlayerReloadGun()
+    {
+        GetComponentInChildren<GunBase>().ReloadGun();
     }
 }
