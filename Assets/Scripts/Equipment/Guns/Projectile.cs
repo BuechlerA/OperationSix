@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : FadeEffect
 {
     public LayerMask collisionMask;
+    public GameObject impactEffect;
+    public GameObject bulletHoleObject;
 
     float speed;
     float damage = 1f;
@@ -27,11 +29,13 @@ public class Projectile : FadeEffect
     void CheckCollisions(float moveDistance)
     {
         Ray ray = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(transform.position, transform.forward, Color.blue, 5f);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
         {
             OnHitObject(hit);
+            PlayImpactEffect(hit, ray);
             Destroy(gameObject);
         }
     }
@@ -44,5 +48,16 @@ public class Projectile : FadeEffect
         {
             damageableObject.TakeHit(damage, hit);
         }
+    }
+
+    void PlayImpactEffect(RaycastHit hit, Ray ray)
+    {
+        //Generate Impact Spark effect
+        Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+        //Generate BulletHole
+        Instantiate(bulletHoleObject, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+
+        //Draw NormalVector as Ray
+        Debug.DrawRay(hit.point, hit.normal * 10f, Color.red, 5f);
     }
 }

@@ -32,6 +32,7 @@ public class GunBase : MonoBehaviour
     public AudioClip soundEmpty;
     public AudioClip soundReload;
 
+    private float recoil = 0f;
     public float minAccuracy = 1f;
     public float maxAccuracy = 3f;
     public float msBetweenShot = 100f;
@@ -58,12 +59,12 @@ public class GunBase : MonoBehaviour
     {
         if (gunType == GunType.Rifle)
         {
-            Debug.Log("Rifle");
+            //Debug.Log("Rifle");
             ShootModeRifle();
         }
         if (gunType == GunType.Shotgun)
         {
-            Debug.Log("Shotgun");
+            //Debug.Log("Shotgun");
             ShootModeShotgun();
         }
     }
@@ -80,6 +81,8 @@ public class GunBase : MonoBehaviour
 
             isReloading = false;
             isEmpty = false;
+
+            recoil = 0f;
         }
     }
 
@@ -97,19 +100,19 @@ public class GunBase : MonoBehaviour
             nextShotTime = Time.time + msBetweenShot / 1000;
 
             //accuracy calculation needs to be redone to work with stats
-            //Quaternion accuracy = Quaternion.Euler(Random.Range(-1.0f, 1.0f), Random.Range(-3.0f, 3.0f), 0);
-
-            Quaternion accuracy = Quaternion.Euler(Random.Range(-minAccuracy, minAccuracy), Random.Range(-maxAccuracy, maxAccuracy), 0);
+ 
+            Quaternion accuracy = Quaternion.Euler(Random.Range(-minAccuracy, minAccuracy) * recoil, Random.Range(-minAccuracy, minAccuracy) * recoil, 0);
 
             Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation * accuracy) as Projectile;
             newProjectile.SetSpeed(muzzleVelocity);
-
 
             Instantiate(bulletShell, shellEjector.position, shellEjector.rotation);
             PlayShootSound();
             muzzleFlash.Activate();
             clipSize -= 1;
 
+            IncreaseRecoil();
+            Debug.Log(recoil + " recoil");
         }
         else if (Time.time > nextShotTime && clipSize <= 0)
         {
@@ -139,5 +142,22 @@ public class GunBase : MonoBehaviour
             muzzleFlash.Activate();
             clipSize -= 1;
         }
+    }
+
+    void IncreaseRecoil()
+    {
+        if (recoil <= 20f)
+        {
+            recoil++;
+        }
+        else if (recoil >= 20f)
+        {
+            recoil = 20f;
+        }
+    }
+
+    void DecreaseRecoil()
+    {
+        return;
     }
 }
