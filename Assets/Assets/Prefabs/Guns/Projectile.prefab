@@ -49,7 +49,7 @@ MonoBehaviour:
     m_Bits: 3840
   impactEffect: {fileID: 2665802229284859264, guid: aab176b7148789240b66bebd82921e2e,
     type: 3}
-  bulletHoleObject: {fileID: 4154193007021630060, guid: 8abec02bb3d05ea4ab573ec9b3edac79,
+  bulletHoleObject: {fileID: 6544058744901617172, guid: 8abec02bb3d05ea4ab573ec9b3edac79,
     type: 3}
 --- !u!96 &96112040017491948
 TrailRenderer:

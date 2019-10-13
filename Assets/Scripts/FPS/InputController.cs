@@ -39,6 +39,14 @@ public class InputController : MonoBehaviour
             if (inputEnabled && playerBehaviour != null)
             {
                 playerBehaviour.GetInput(moveInput, viewInput);
+                if (moveInput.magnitude != 0)
+                {
+                    playerBehaviour.isMoving = true;
+                }
+                else
+                {
+                    playerBehaviour.isMoving = false;
+                }
             }
 
             if (Input.GetButton("Sprint"))
@@ -52,14 +60,12 @@ public class InputController : MonoBehaviour
 
             if (Input.GetButton("Fire1"))
             {
-                if (playerBehaviour.isShooting)
-                {
-                    return;
-                }
-                else
-                {
-                    playerBehaviour.PlayerShootGun();
-                }
+                playerBehaviour.PlayerShootGun();
+                playerBehaviour.isShooting = true;
+            }
+            else
+            {
+                playerBehaviour.isShooting = false;
             }
 
             if (Input.GetButton("Fire2"))

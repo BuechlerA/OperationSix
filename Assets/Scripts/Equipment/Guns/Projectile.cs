@@ -6,10 +6,10 @@ public class Projectile : FadeEffect
 {
     public LayerMask collisionMask;
     public GameObject impactEffect;
-    public GameObject bulletHoleObject;
+    public BulletholeBehaviour bulletHoleObject;
 
     float speed;
-    float damage = 1f;
+    float damage = 10f;
 
     public void SetSpeed(float newSpeed)
     {
@@ -29,7 +29,7 @@ public class Projectile : FadeEffect
     void CheckCollisions(float moveDistance)
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward, Color.blue, 5f);
+        Debug.DrawRay(transform.position, transform.forward, Color.blue, 3f);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
@@ -54,10 +54,9 @@ public class Projectile : FadeEffect
     {
         //Generate Impact Spark effect
         Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
-        //Generate BulletHole
-        Instantiate(bulletHoleObject, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
 
-        //Draw NormalVector as Ray
-        Debug.DrawRay(hit.point, hit.normal * 10f, Color.red, 5f);
+        //Generate BulletHole
+        BulletholeBehaviour newBulletHole = Instantiate(bulletHoleObject, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal, Vector3.up));
+        newBulletHole.SetSprite();
     }
 }

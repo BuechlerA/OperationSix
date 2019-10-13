@@ -12,7 +12,10 @@ public class AudioController : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = Camera.main.GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource = Camera.main.GetComponent<AudioSource>();
+        }
     }
 
     public void AudioSelected()

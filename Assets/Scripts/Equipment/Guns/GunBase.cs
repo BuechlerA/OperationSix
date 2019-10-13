@@ -32,7 +32,10 @@ public class GunBase : MonoBehaviour
     public AudioClip soundEmpty;
     public AudioClip soundReload;
 
-    private float recoil = 0f;
+    private float currentRecoil = 0f;
+    private float minRecoil = 0f;
+    private float maxRecoil = 10f;
+
     public float minAccuracy = 1f;
     public float maxAccuracy = 3f;
     public float msBetweenShot = 100f;
@@ -40,9 +43,8 @@ public class GunBase : MonoBehaviour
     public float reloadTime = 1.5f;
     public int clipSize = 30;
 
-    private int shotgunSize = 50;
-
     public bool isEmpty;
+    public bool isMuzzleFlashActivated;
     bool isReloading = false;
     float nextShotTime;
 
@@ -62,11 +64,6 @@ public class GunBase : MonoBehaviour
             //Debug.Log("Rifle");
             ShootModeRifle();
         }
-        if (gunType == GunType.Shotgun)
-        {
-            //Debug.Log("Shotgun");
-            ShootModeShotgun();
-        }
     }
 
 
@@ -81,8 +78,6 @@ public class GunBase : MonoBehaviour
 
             isReloading = false;
             isEmpty = false;
-
-            recoil = 0f;
         }
     }
 
@@ -101,18 +96,18 @@ public class GunBase : MonoBehaviour
 
             //accuracy calculation needs to be redone to work with stats
  
-            Quaternion accuracy = Quaternion.Euler(Random.Range(-minAccuracy, minAccuracy) * recoil, Random.Range(-minAccuracy, minAccuracy) * recoil, 0);
+            Quaternion accuracy = Quaternion.Euler(Random.Range(-minAccuracy, minAccuracy) * currentRecoil, Random.Range(-minAccuracy, minAccuracy) * currentRecoil, 0);
 
             Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation * accuracy) as Projectile;
             newProjectile.SetSpeed(muzzleVelocity);
 
             Instantiate(bulletShell, shellEjector.position, shellEjector.rotation);
             PlayShootSound();
-            muzzleFlash.Activate();
-            clipSize -= 1;
-
-            IncreaseRecoil();
-            Debug.Log(recoil + " recoil");
+            if (isMuzzleFlashActivated)
+            {
+                muzzleFlash.Activate();
+            }
+            clipSize -= 1;            
         }
         else if (Time.time > nextShotTime && clipSize <= 0)
         {
@@ -125,39 +120,37 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    void ShootModeShotgun()
+    private void Update()
     {
-        if (Time.time > nextShotTime && clipSize >= 0 && !isReloading)
+        IncreaseRecoil();
+    }
+
+    bool isShooting
+    {
+        get
         {
-            for (int i = 0; i < shotgunSize; i++)
+            if (Input.GetAxis("Fire1") != 0 && !isEmpty)
             {
-                Quaternion accuracy = Quaternion.Euler(Random.Range(-minAccuracy, minAccuracy), Random.Range(-maxAccuracy, maxAccuracy), 0);
-
-                Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation * accuracy) as Projectile;
-                newProjectile.SetSpeed(muzzleVelocity);
+                return true;
             }
-
-            Instantiate(bulletShell, shellEjector.position, shellEjector.rotation);
-            PlayShootSound();
-            muzzleFlash.Activate();
-            clipSize -= 1;
+            else
+            {
+                return false;
+            }
         }
     }
 
     void IncreaseRecoil()
     {
-        if (recoil <= 20f)
+        if (isShooting)
         {
-            recoil++;
+            currentRecoil = Mathf.Lerp(currentRecoil, maxRecoil, Time.deltaTime);
         }
-        else if (recoil >= 20f)
+        else
         {
-            recoil = 20f;
+            currentRecoil = Mathf.Lerp(currentRecoil, minRecoil, Time.deltaTime * 10f);
         }
-    }
 
-    void DecreaseRecoil()
-    {
-        return;
+        //Debug.Log(currentRecoil);
     }
 }

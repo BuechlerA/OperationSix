@@ -5,9 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PrototypeScene.unity
     guid: 202af049e47f8ac4cb47d3742c3904f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PatrolTest.unity
     guid: fd9fd22be11ec2548a1b1c121055ad40
+  - enabled: 1
+    path: Assets/Scenes/FPSControllerTestGround.unity
+    guid: 971d356a06490804d9745ff55fa1d1e3
+  m_configObjects: {}

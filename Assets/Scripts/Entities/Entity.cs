@@ -62,7 +62,7 @@ public class Entity : MonoBehaviour, IDamageable
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<NavMeshAgent>().enabled = false;
         GetComponentInChildren<ViewVisualization>().Disable();
-        
+        GetComponent<Collider>().enabled = false;
         
         gameObject.layer = 13;
     }

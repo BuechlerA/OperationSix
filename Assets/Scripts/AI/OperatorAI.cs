@@ -34,7 +34,10 @@ public class OperatorAI : MonoBehaviour
         currentGun = GetComponentInChildren<GunBase>();
         soldierNavMeshAgent = GetComponent<NavMeshAgent>();
         animationSoldier = GetComponentInChildren<Animation_Soldier>();
-        guiMessageText = GameObject.Find("MessageText").GetComponent<GUIMessageText>();
+        if (guiMessageText != null)
+        {
+            guiMessageText = GameObject.Find("MessageText").GetComponent<GUIMessageText>();
+        }
     }
 
     private void LateUpdate()
