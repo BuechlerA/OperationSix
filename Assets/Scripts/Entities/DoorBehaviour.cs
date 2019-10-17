@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class DoorBehaviour : MonoBehaviour
 {
 
-    public bool isOpen;
+    public bool doorState;
     [SerializeField]
     private Animator doorAnimator;
 
@@ -16,15 +16,16 @@ public class DoorBehaviour : MonoBehaviour
     {   
         doorAnimator = GetComponentInChildren<Animator>();
 
-        SetLock(false);
+        SetLock(doorState);
 	}
 
 
     //false is closed
     //true is open
+    [ContextMenu("SetLock")]
     public void SetLock(bool lockStatus)
     {
-        isOpen = lockStatus;
+        doorState = lockStatus;
 
         doorAnimator.SetBool("isOpen", lockStatus);
         GetComponent<Collider>().enabled = !lockStatus;

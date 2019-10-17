@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : FadeEffect
 {
     public LayerMask collisionMask;
-    public GameObject impactEffect;
+    public GameObject[] impactEffects = new GameObject[2];
     public BulletholeBehaviour bulletHoleObject;
 
     float speed;
@@ -34,8 +34,16 @@ public class Projectile : FadeEffect
 
         if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
         {
+            Debug.Log(hit.collider.gameObject.GetType().ToString());
             OnHitObject(hit);
-            PlayImpactEffect(hit, ray);
+            if (hit.collider.gameObject.tag == "enemy")
+            {
+                PlayImpactEffect(hit, ray, 1);
+            }
+            else
+            {
+                PlayImpactEffect(hit, ray, 0);
+            }
             Destroy(gameObject);
         }
     }
@@ -50,13 +58,16 @@ public class Projectile : FadeEffect
         }
     }
 
-    void PlayImpactEffect(RaycastHit hit, Ray ray)
+    void PlayImpactEffect(RaycastHit hit, Ray ray, int effectVariant)
     {
         //Generate Impact Spark effect
-        Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+        Instantiate(impactEffects[effectVariant], hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
 
         //Generate BulletHole
-        BulletholeBehaviour newBulletHole = Instantiate(bulletHoleObject, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal, Vector3.up));
-        newBulletHole.SetSprite();
+        if (effectVariant == 0)
+        {
+            BulletholeBehaviour newBulletHole = Instantiate(bulletHoleObject, hit.point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal, Vector3.up));
+            newBulletHole.SetSprite();
+        }
     }
 }

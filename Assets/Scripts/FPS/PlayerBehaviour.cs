@@ -30,8 +30,9 @@ public class PlayerBehaviour : Entity
     public bool isInteracting = false;
     public bool isShooting = false;
 
-    public bool hasTargetLocked = false;
+    public bool aimAssist = false;
     public bool isTargetVisible = false;
+    public bool hasTargetLocked = false;
 
     public void GetInput(Vector3 moveVector, Vector3 viewVector)
     {
@@ -76,7 +77,10 @@ public class PlayerBehaviour : Entity
     private void Update()
     {
         CheckGrounded();
-        AimAssist();
+        if (aimAssist)
+        {
+            AimAssist();
+        }
     }
 
     private void CheckGrounded()
@@ -115,48 +119,42 @@ public class PlayerBehaviour : Entity
         {
             Ray ray = new Ray(cam.transform.position, headmarker.position - cam.transform.position);
             RaycastHit hit;
-            Debug.DrawRay(cam.transform.position, headmarker.position - cam.transform.position, Color.red);
+
 
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.gameObject.layer == 10)
                 {
                     isTargetVisible = true;
-                    Debug.Log(GetClosestEnemy(enemiesInArea));
                     target = headmarker;
+                    Debug.DrawRay(cam.transform.position, headmarker.position - cam.transform.position, Color.red);
                 }
                 else
                 {
                     isTargetVisible = false;
                     target = null;
+                    Debug.DrawRay(cam.transform.position, headmarker.position - cam.transform.position, Color.green);
                 }
             }
         }
 
         //Set Reticle to Target position
-        if (target != null)
+        Vector3 screenPos = cam.WorldToScreenPoint(target.position);
+        Rect viewRect = new Rect((Screen.width * 0.5f) - 75f, (Screen.height * 0.5f) - 75f, 150f, 150f);
+
+        if (isTargetVisible && viewRect.Contains(screenPos) && screenPos.z > 0)
         {
-            Vector3 screenPos = cam.WorldToScreenPoint(target.position);
-            Rect viewRect = new Rect((Screen.width * 0.5f) - 75f, (Screen.height * 0.5f) - 75f, 150f, 150f);
-        
-            if (isTargetVisible)
-            {
-                if (viewRect.Contains(screenPos) && screenPos.z > 0)
-                {
-                    reticle.transform.position = screenPos;
-                    GetComponentInChildren<GunBase>().transform.LookAt(target.position);
-                    hasTargetLocked = true;
-                }
-                else
-                {          
-                    reticle.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
-                    GetComponentInChildren<GunBase>().transform.localEulerAngles = Vector3.zero;
-                    hasTargetLocked = false;
-                }
-            }
+            hasTargetLocked = true;
+            reticle.transform.position = screenPos;
+            GetComponentInChildren<GunBase>().transform.LookAt(target.position);
+        }
+        else
+        {
+            hasTargetLocked = false;
+            reticle.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
+            GetComponentInChildren<GunBase>().transform.localEulerAngles = Vector3.zero;
         }
     }
-
     private bool isOnSlope()
     {
         RaycastHit hit;

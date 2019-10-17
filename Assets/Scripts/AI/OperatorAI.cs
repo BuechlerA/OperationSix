@@ -100,6 +100,7 @@ public class OperatorAI : MonoBehaviour
         {
             currentGun.ShootGun();
 
+
             animationSoldier.SetShooting();
         }
         else if (currentGun.isEmpty)

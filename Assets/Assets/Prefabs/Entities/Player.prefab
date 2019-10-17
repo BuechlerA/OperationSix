@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5512778896445621359}
   - component: {fileID: 5512778896445621344}
   - component: {fileID: 5512778896445621356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -94,14 +94,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08d9681567cd3a419c0186a74597241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  stance: 0
+  isDead: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstLayer:
+    serializedVersion: 2
+    m_Bits: 35328
+  enemiesInArea: []
   characterController: {fileID: 5512778896445621356}
+  reticle: {fileID: 0}
+  target: {fileID: 0}
   cam: {fileID: 5512778896888636746}
   walkSpeed: 2
   runSpeed: 4
   gravity: 20
+  isMoving: 0
   isRunning: 0
   isInteracting: 0
   isShooting: 0
+  aimAssist: 1
+  isTargetVisible: 0
+  hasTargetLocked: 0
 --- !u!136 &5512778896445621344
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -242,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5512778897223014580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5517339396475353819}
@@ -260,6 +276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 1295797145744074, guid: a489bb76342d6214fb9cceca2d082b1a, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 4738620800242632, guid: a489bb76342d6214fb9cceca2d082b1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -270,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738620800242632, guid: a489bb76342d6214fb9cceca2d082b1a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4738620800242632, guid: a489bb76342d6214fb9cceca2d082b1a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -304,10 +325,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4892171670608964, guid: a489bb76342d6214fb9cceca2d082b1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.763
+      objectReference: {fileID: 0}
     - target: {fileID: 114876956504891552, guid: a489bb76342d6214fb9cceca2d082b1a,
         type: 3}
       propertyPath: msBetweenShot
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114876956504891552, guid: a489bb76342d6214fb9cceca2d082b1a,
+        type: 3}
+      propertyPath: reloadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82711880932383908, guid: a489bb76342d6214fb9cceca2d082b1a,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.9999993
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a489bb76342d6214fb9cceca2d082b1a, type: 3}

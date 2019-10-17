@@ -47,8 +47,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 3840
-  impactEffect: {fileID: 2665802229284859264, guid: aab176b7148789240b66bebd82921e2e,
-    type: 3}
+  impactEffects:
+  - {fileID: 2665802229284859264, guid: aab176b7148789240b66bebd82921e2e, type: 3}
+  - {fileID: 5284443946718963035, guid: 9226cf73e312b4c41b7f37877e45313a, type: 3}
   bulletHoleObject: {fileID: 6544058744901617172, guid: 8abec02bb3d05ea4ab573ec9b3edac79,
     type: 3}
 --- !u!96 &96112040017491948

@@ -292,10 +292,11 @@ MonoBehaviour:
   minAccuracy: 1
   maxAccuracy: 3
   msBetweenShot: 500
-  muzzleVelocity: 100
+  muzzleVelocity: 90
   reloadTime: 1.5
   clipSize: 30
   isEmpty: 0
+  isMuzzleFlashActivated: 1
 --- !u!82 &82711880932383908
 AudioSource:
   m_ObjectHideFlags: 0

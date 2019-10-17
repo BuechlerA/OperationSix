@@ -25,7 +25,7 @@ public class SquadController : MonoBehaviour
 
     public void Update()
     {
-
+        MoveWithPlayer();
         //Debug.Log("Remaining Distance to Spot:" + operatorList[0].GetComponent<NavMeshAgent>().remainingDistance);
 
         if (isMovingToDoor)
@@ -45,6 +45,8 @@ public class SquadController : MonoBehaviour
                 }
             }
         }
+
+        MoveToWaypoint(transform.position);
     }
 
     public void SquadSelection()
@@ -89,5 +91,12 @@ public class SquadController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         currentDoor.SetLock(true);
         isCurrentlyOpening = false;
+    }
+
+    void MoveWithPlayer()
+    {
+        Transform playerPos = GameObject.Find("Player").transform;
+
+        transform.position = Vector3.Lerp(transform.position, Vector3.Scale(playerPos.position,new Vector3(0.5f, 0, 0.5f)), Time.deltaTime);
     }
 }
