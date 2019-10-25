@@ -5,30 +5,19 @@ using UnityEngine.AI;
 
 public class DoorBehaviour : MonoBehaviour
 {
+    [Range(-90f, 20f)]
+    public float doorHinge = -90f;
+    public GameObject hingeObject;
+    public GameObject doorObject;
 
-    public bool doorState;
-    [SerializeField]
-    private Animator doorAnimator;
-
-    public Transform[] doorRallyPoints = new Transform[3];
-
-	void Start ()
-    {   
-        doorAnimator = GetComponentInChildren<Animator>();
-
-        SetLock(doorState);
-	}
-
-
-    //false is closed
-    //true is open
-    [ContextMenu("SetLock")]
-    public void SetLock(bool lockStatus)
+    [ContextMenu("SetDoor")]
+    public void SetDoor(float amount)
     {
-        doorState = lockStatus;
-
-        doorAnimator.SetBool("isOpen", lockStatus);
-        GetComponent<Collider>().enabled = !lockStatus;
-        GetComponent<NavMeshObstacle>().enabled = !lockStatus;         
+        hingeObject.transform.Rotate(0, 0, amount, Space.Self);
+    }
+    private void Update()
+    {
+        hingeObject.transform.rotation = Quaternion.Euler(-90, 0, doorHinge);
+        doorObject.transform.rotation = Quaternion.Euler(-90, 0, doorHinge);
     }
 }

@@ -90,7 +90,7 @@ public class WaypointController : MonoBehaviour
             return;
         }
 
-        squadController.MoveToDoor(myTouch, hit.collider.GetComponent<DoorBehaviour>().doorRallyPoints, hit.collider.GetComponent<DoorBehaviour>());
+        //squadController.MoveToDoor(myTouch, hit.collider.GetComponent<DoorBehaviour>().doorRallyPoints, hit.collider.GetComponent<DoorBehaviour>());
     }
 
     #region AndroidSpecific

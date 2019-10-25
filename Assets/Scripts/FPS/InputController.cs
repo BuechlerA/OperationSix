@@ -68,6 +68,11 @@ public class InputController : MonoBehaviour
                 playerBehaviour.isShooting = false;
             }
 
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                playerBehaviour.PlayerReloadGun();
+            }
+
             if (Input.GetButton("Fire2"))
             {
                 if (playerBehaviour.isInteracting)
@@ -80,9 +85,10 @@ public class InputController : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
             {
-                playerBehaviour.PlayerReloadGun();
+                //Debug.Log(Input.GetAxisRaw("Mouse ScrollWheel"));
+                playerBehaviour.PlayerInteract();
             }
         }
     }

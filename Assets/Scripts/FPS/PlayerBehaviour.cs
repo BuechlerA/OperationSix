@@ -6,6 +6,7 @@ public class PlayerBehaviour : Entity
 {
     public LayerMask targetLayer;
     public LayerMask obstLayer;
+    public LayerMask interactionLayer;
     public List<Transform> enemiesInArea = new List<Transform>();
 
     public CharacterController characterController;
@@ -61,7 +62,21 @@ public class PlayerBehaviour : Entity
 
     public void PlayerInteract()
     {
+        
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit hit;
 
+        Debug.DrawRay(cam.transform.position, cam.transform.forward, Color.cyan, 1.5f);
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1f, interactionLayer, QueryTriggerInteraction.Collide))
+        {
+            hit.collider.gameObject.GetComponent<DoorBehaviour>().doorHinge += 10f;
+            //DoorBehaviour doorObject = hit.collider.GetComponent<DoorBehaviour>();
+            //if (doorObject != null)
+            //{
+            //    doorObject.doorHinge += 5f;
+            //}
+        }
     }
 
     public void PlayerShootGun()
@@ -139,20 +154,23 @@ public class PlayerBehaviour : Entity
         }
 
         //Set Reticle to Target position
-        Vector3 screenPos = cam.WorldToScreenPoint(target.position);
-        Rect viewRect = new Rect((Screen.width * 0.5f) - 75f, (Screen.height * 0.5f) - 75f, 150f, 150f);
+        if (target != null)
+        {
+            Vector3 screenPos = cam.WorldToScreenPoint(target.position);
+            Rect viewRect = new Rect((Screen.width * 0.5f) - 75f, (Screen.height * 0.5f) - 75f, 150f, 150f);
 
-        if (isTargetVisible && viewRect.Contains(screenPos) && screenPos.z > 0)
-        {
-            hasTargetLocked = true;
-            reticle.transform.position = screenPos;
-            GetComponentInChildren<GunBase>().transform.LookAt(target.position);
-        }
-        else
-        {
-            hasTargetLocked = false;
-            reticle.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
-            GetComponentInChildren<GunBase>().transform.localEulerAngles = Vector3.zero;
+            if (isTargetVisible && viewRect.Contains(screenPos) && screenPos.z > 0)
+            {
+                hasTargetLocked = true;
+                reticle.transform.position = screenPos;
+                GetComponentInChildren<GunBase>().transform.LookAt(target.position);
+            }
+            else
+            {
+                hasTargetLocked = false;
+                reticle.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
+                GetComponentInChildren<GunBase>().transform.localEulerAngles = Vector3.zero;
+            }
         }
     }
     private bool isOnSlope()

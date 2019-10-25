@@ -60,15 +60,20 @@ public class SquadController : MonoBehaviour
     public void MoveToWaypoint(Vector3 myTouch)
     {
         //Debug.Log("current waypoint: " + myTouch);
-
         transform.position = myTouch;
 
-        for (int i = 0; i < operatorList.Length; i++)
-        {
-            //operatorList[i].GetComponent<NavMeshAgent>().SetDestination(myTouch);
-            operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
-        }
-
+            for (int i = 0; i < operatorList.Length; i++)
+            {
+                if (!operatorList[i].isDead)
+                {
+                    //operatorList[i].GetComponent<NavMeshAgent>().SetDestination(myTouch);
+                    operatorList[i].GetComponent<NavMeshAgent>().SetDestination(rallyPoints[i].position);
+                }
+                else
+                {
+                    return;
+                }
+            }
     }
 
     public void MoveToDoor(Vector3 myTouch, Transform[] doorPoints, DoorBehaviour selectedDoor)
@@ -89,7 +94,6 @@ public class SquadController : MonoBehaviour
         isCurrentlyOpening = true;
         Debug.Log("unlocking door!");
         yield return new WaitForSeconds(3f);
-        currentDoor.SetLock(true);
         isCurrentlyOpening = false;
     }
 

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 44800
   impactEffects:
   - {fileID: 2665802229284859264, guid: aab176b7148789240b66bebd82921e2e, type: 3}
   - {fileID: 5284443946718963035, guid: 9226cf73e312b4c41b7f37877e45313a, type: 3}

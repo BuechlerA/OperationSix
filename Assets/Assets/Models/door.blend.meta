@@ -2,70 +2,7 @@ fileFormatVersion: 2
 guid: 9f9d63becc3f6f0458c96cefeb27866b
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: Bone
-  - first:
-      1: 100002
-    second: Door
-  - first:
-      1: 100004
-    second: //RootNode
-  - first:
-      1: 100006
-    second: DoorFrame
-  - first:
-      1: 100008
-    second: HingeBone
-  - first:
-      4: 400000
-    second: Bone
-  - first:
-      4: 400002
-    second: Door
-  - first:
-      4: 400004
-    second: //RootNode
-  - first:
-      4: 400006
-    second: DoorFrame
-  - first:
-      4: 400008
-    second: HingeBone
-  - first:
-      21: 2100000
-    second: Door
-  - first:
-      21: 2100002
-    second: Frame
-  - first:
-      23: 2300000
-    second: DoorFrame
-  - first:
-      33: 3300000
-    second: DoorFrame
-  - first:
-      43: 4300000
-    second: Door
-  - first:
-      43: 4300002
-    second: DoorFrame
-  - first:
-      74: 7400000
-    second: Default Take
-  - first:
-      74: 7400002
-    second: HingeBoneAction
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: Door
-  - first:
-      74: -5132212869311110693
-    second: HingeBone|HingeBoneAction
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -94,7 +31,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -127,7 +64,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []

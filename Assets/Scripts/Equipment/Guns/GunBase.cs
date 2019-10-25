@@ -41,7 +41,8 @@ public class GunBase : MonoBehaviour
     public float msBetweenShot = 100f;
     public float muzzleVelocity = 35f;
     public float reloadTime = 1.5f;
-    public int clipSize = 30;
+    public int currentClipSize = 30;
+    public int remainingMags = 2;
 
     public bool isEmpty;
     public bool isMuzzleFlashActivated;
@@ -52,7 +53,7 @@ public class GunBase : MonoBehaviour
 
     private void Start()
     {
-        defaultMagSize = clipSize;
+        defaultMagSize = currentClipSize;
         gunSound = GetComponent<AudioSource>();
         muzzleFlash = GetComponentInChildren<MuzzleFlashEffect>();
     }
@@ -69,16 +70,16 @@ public class GunBase : MonoBehaviour
 
     public virtual void ReloadGun()
     {
-        if (clipSize < defaultMagSize - 1)
-        {
-            isReloading = true;
-            gunSound.PlayOneShot(soundReload);
-            clipSize = 30;
-            nextShotTime = Time.time + reloadTime;
+            if (currentClipSize < defaultMagSize - 1)
+            {
+                isReloading = true;
+                gunSound.PlayOneShot(soundReload);
+                currentClipSize = 30;
+                nextShotTime = Time.time + reloadTime;
 
-            isReloading = false;
-            isEmpty = false;
-        }
+                isReloading = false;
+                isEmpty = false;
+            }
     }
 
     void PlayShootSound()
@@ -90,7 +91,7 @@ public class GunBase : MonoBehaviour
 
     void ShootModeRifle()
     {
-        if (Time.time > nextShotTime && clipSize >= 0 && !isReloading)
+        if (Time.time > nextShotTime && currentClipSize >= 0 && !isReloading)
         {
             nextShotTime = Time.time + msBetweenShot / 1000;
 
@@ -107,9 +108,9 @@ public class GunBase : MonoBehaviour
             {
                 muzzleFlash.Activate();
             }
-            clipSize -= 1;            
+            currentClipSize -= 1;            
         }
-        else if (Time.time > nextShotTime && clipSize <= 0)
+        else if (Time.time > nextShotTime && currentClipSize <= 0)
         {
             gunSound.PlayOneShot(soundEmpty);
             nextShotTime = Time.time + msBetweenShot / 150;

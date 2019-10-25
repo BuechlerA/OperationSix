@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5512778896445621359}
   - component: {fileID: 5512778896445621344}
   - component: {fileID: 5512778896445621356}
+  - component: {fileID: 1144888733}
+  - component: {fileID: 1144888732}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -103,6 +105,9 @@ MonoBehaviour:
   obstLayer:
     serializedVersion: 2
     m_Bits: 35328
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 32768
   enemiesInArea: []
   characterController: {fileID: 5512778896445621356}
   reticle: {fileID: 0}
@@ -150,6 +155,45 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &1144888733
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5512778896445621345}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &1144888732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5512778896445621345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e73ab488ea5454f93a4a2342b0db59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  stance: 0
+  isDead: 0
+  operatorName: 
+  nationality: 0
+  specialty: 0
+  rarity: 0
+  equippedPrimary: {fileID: 0}
+  equippedSecondary: {fileID: 0}
+  equippedArmor: {fileID: 0}
+  selectionCircle: {fileID: 0}
 --- !u!1 &5512778896888636745
 GameObject:
   m_ObjectHideFlags: 0
