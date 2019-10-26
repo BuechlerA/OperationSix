@@ -65,5 +65,10 @@ public class Entity : MonoBehaviour, IDamageable
         GetComponent<Collider>().enabled = false;
         
         gameObject.layer = 13;
+
+        if (gameObject.tag == "Player")
+        {
+            Debug.Log("Player died");
+        }
     }
 }

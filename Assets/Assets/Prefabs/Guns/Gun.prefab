@@ -280,7 +280,7 @@ MonoBehaviour:
   muzzle: {fileID: 4413715049462500}
   projectile: {fileID: 114819649013382464, guid: b029957e8519abc41b2a37044c5386ff,
     type: 3}
-  bulletShell: {fileID: 4294657678992890, guid: 05e57f1dc68cffe41b44c58a50fc3e86,
+  bulletShell: {fileID: 8301495071939616472, guid: 03cc78d199839044bb32b3c4a29ad667,
     type: 3}
   shellEjector: {fileID: 4892171670608964}
   muzzleFlash: {fileID: 114689147031343502}
@@ -294,7 +294,8 @@ MonoBehaviour:
   msBetweenShot: 500
   muzzleVelocity: 90
   reloadTime: 1.5
-  clipSize: 30
+  currentClipSize: 30
+  remainingMags: 2
   isEmpty: 0
   isMuzzleFlashActivated: 1
 --- !u!82 &82711880932383908

@@ -54,6 +54,19 @@ public class PlayerBehaviour : Entity
         characterController.Move(transform.TransformDirection(moveVector.x * 0.5f, verticalSpeed, moveVector.z) * currentSpeed * Time.deltaTime);
     }
 
+    public void PlayerChangeStance()
+    {
+        Debug.Log("PlayerChangeStance");
+        if (stance == StanceType.Standing)
+        {
+            stance = StanceType.Crouching;
+        }
+        if (stance == StanceType.Crouching)
+        {
+            stance = StanceType.Standing;
+        }
+    }
+
     public void PlayerView(Vector3 viewVector)
     {
         transform.localEulerAngles += new Vector3(0, viewVector.y, 0);

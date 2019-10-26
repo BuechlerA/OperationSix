@@ -72,6 +72,10 @@ public class InputController : MonoBehaviour
             {
                 playerBehaviour.PlayerReloadGun();
             }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                playerBehaviour.PlayerChangeStance();
+            }
 
             if (Input.GetButton("Fire2"))
             {

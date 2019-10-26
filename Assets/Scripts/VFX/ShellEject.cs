@@ -16,7 +16,7 @@ public class ShellEject : FadeEffect
     private void Start()
     {
         float force = Random.Range(forceMin, forceMax);
-        shellRigidbody.AddForce(transform.right * force);
+        shellRigidbody.AddForce(transform.forward * force);
         shellRigidbody.AddTorque(Random.insideUnitSphere * force);
 
         StartCoroutine(Fade());

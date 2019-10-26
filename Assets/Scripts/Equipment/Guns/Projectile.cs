@@ -34,9 +34,9 @@ public class Projectile : FadeEffect
 
         if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
         {
-            Debug.Log(hit.collider.gameObject.GetType().ToString());
+            //Debug.Log(hit.collider.gameObject.GetType().ToString());
             OnHitObject(hit);
-            if (hit.collider.gameObject.tag == "enemy" || hit.collider.gameObject.tag == "friendly")
+            if (hit.collider.gameObject.tag == "enemy" || hit.collider.gameObject.tag == "friendly" || hit.collider.gameObject.tag == "Player")
             {
                 PlayImpactEffect(hit, ray, 1);
             }

@@ -10,6 +10,16 @@ public class DoorBehaviour : MonoBehaviour
     public GameObject hingeObject;
     public GameObject doorObject;
 
+    public bool isLocked = false;
+
+    public void SetLock(bool lockState)
+    {
+        if (isLocked != lockState)
+        {
+            isLocked = lockState;    
+        }
+    }
+
     [ContextMenu("SetDoor")]
     public void SetDoor(float amount)
     {
@@ -17,7 +27,19 @@ public class DoorBehaviour : MonoBehaviour
     }
     private void Update()
     {
-        hingeObject.transform.rotation = Quaternion.Euler(-90, 0, doorHinge);
-        doorObject.transform.rotation = Quaternion.Euler(-90, 0, doorHinge);
+        RealtimeDoorState();
+    }
+
+    private void RealtimeDoorState()
+    {
+        if (isLocked)
+        {
+            return;
+        }
+        else
+        {
+            hingeObject.transform.rotation = Quaternion.Euler(-90, 0, doorHinge);
+            doorObject.transform.rotation = Quaternion.Euler(-90, 0, doorHinge);
+        }
     }
 }
