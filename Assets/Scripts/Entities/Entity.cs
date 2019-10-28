@@ -60,8 +60,14 @@ public class Entity : MonoBehaviour, IDamageable
         isDead = true;
         //Destroy(gameObject);
         GetComponentInChildren<Animator>().enabled = false;
-        GetComponentInChildren<NavMeshAgent>().enabled = false;
-        GetComponentInChildren<ViewVisualization>().Disable();
+        if (GetComponentInChildren<NavMeshAgent>() != null)
+        {
+            GetComponentInChildren<NavMeshAgent>().enabled = false;
+        }
+        if (GetComponentInChildren<ViewVisualization>() != null)
+        {
+            GetComponentInChildren<ViewVisualization>().Disable();
+        }
         GetComponent<Collider>().enabled = false;
         
         gameObject.layer = 13;

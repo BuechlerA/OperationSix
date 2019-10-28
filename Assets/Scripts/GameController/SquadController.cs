@@ -25,7 +25,7 @@ public class SquadController : MonoBehaviour
 
     public void Update()
     {
-        MoveWithPlayer();
+        //MoveWithPlayer();
         //Debug.Log("Remaining Distance to Spot:" + operatorList[0].GetComponent<NavMeshAgent>().remainingDistance);
 
         if (isMovingToDoor)

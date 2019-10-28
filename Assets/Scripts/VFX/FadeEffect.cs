@@ -16,6 +16,7 @@ public abstract class FadeEffect : MonoBehaviour
             float fadeSpeed = 1 / fadetime;
 
             Material mat = GetComponent<Renderer>().material;
+
             Color initialColor = mat.color;
 
             while (fadePercent < 1)
